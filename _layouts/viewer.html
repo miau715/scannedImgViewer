@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body class="viewer">
+    <header class="viewer__header">
+      <ul>
+        <li>
+          <button id="viewer-zoom-in">+</button>
+        </li>
+        <li>
+          <button id="viewer-zoom-out">-</button>
+        </li>
+        <li>
+          <button id="viewer-home">0</button>
+        </li>
+      </ul>
+    </header>
+    <div id="viewer-block" class="viewer__content">
+    </div>
+    <footer class="viewer__footer">
+      <ul>
+        <li>
+          <button id="viewer-prev">&lt;</button>
+        </li>
+        <li>
+          <button id="viewer-next">&gt;</button>
+        </li>
+      </ul>
+    </footer>
+  </body>
+  <script src="/assets/javascripts/openseadragon.min.js"></script>
+  <script>
+    (function(){
+      var viewer = OpenSeadragon({
+        id: "viewer-block",
+        prefixUrl: "/assets/images/openseadragon/",
+        tileSources: [
+          {
+            type: 'image',
+            url:  '/assets/images/TJTST1_001.png'
+          },
+          {
+            type: 'image',
+            url:  '/assets/images/TJTST1_002.png'
+          },
+          {
+            type: 'image',
+            url:  '/assets/images/TJTST1_003.png'
+          },
+          {
+            type: 'image',
+            url:  '/assets/images/TJTST1_004.png'
+          },
+          {
+            type: 'image',
+            url:  '/assets/images/TJTST1_005.png'
+          },
+        ],
+        sequenceMode: true,
+
+        zoomInButton:   "viewer-zoom-in",
+        zoomOutButton:  "viewer-zoom-out",
+        homeButton:     "viewer-home",
+        nextButton:     "viewer-next",
+        previousButton: "viewer-prev",
+      });
+    })();
+  </script>
+</html>
