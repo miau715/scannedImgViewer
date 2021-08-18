@@ -28,36 +28,25 @@
           <button id="viewer-next">&gt;</button>
         </li>
       </ul>
+      <div id="current-page"></div>
     </footer>
   </body>
   <script src="/assets/javascripts/openseadragon.min.js"></script>
   <script>
     (function(){
-      var viewer = OpenSeadragon({
+      let imgSources = [];
+      const imgSourcesMin = 1;
+      const imgSourcesMax = 12;
+      for (i = imgSourcesMin; i < imgSourcesMax + 1; i++) {
+        imgSources.push({
+          type: 'image',
+          url:  `/assets/images/TJTST1_${('00' + i).slice(-3)}.png`
+        })
+      }
+      const viewer = OpenSeadragon({
         id: "viewer-block",
         prefixUrl: "/assets/images/openseadragon/",
-        tileSources: [
-          {
-            type: 'image',
-            url:  '/assets/images/TJTST1_001.png'
-          },
-          {
-            type: 'image',
-            url:  '/assets/images/TJTST1_002.png'
-          },
-          {
-            type: 'image',
-            url:  '/assets/images/TJTST1_003.png'
-          },
-          {
-            type: 'image',
-            url:  '/assets/images/TJTST1_004.png'
-          },
-          {
-            type: 'image',
-            url:  '/assets/images/TJTST1_005.png'
-          },
-        ],
+        tileSources: imgSources,
         sequenceMode: true,
 
         zoomInButton:   "viewer-zoom-in",
@@ -65,6 +54,10 @@
         homeButton:     "viewer-home",
         nextButton:     "viewer-next",
         previousButton: "viewer-prev",
+      });
+      document.getElementById("current-page").innerHTML = 1 + " of " + (imgSourcesMax - imgSourcesMin + 1);
+      viewer.addHandler("page", function (data) {
+        document.getElementById("current-page").innerHTML = ( data.page + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
       });
     })();
   </script>

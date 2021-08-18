@@ -58,4 +58,12 @@ body {
     flex-grow: 1;
     background-color: rgba(0,0,0,.2);
   }
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > div {
+      margin-left: 10px;
+    }
+  }
 }
