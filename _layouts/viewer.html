@@ -31,7 +31,7 @@
       <div id="current-page"></div>
     </footer>
   </body>
-  <script src="/assets/javascripts/openseadragon.min.js"></script>
+  <script src="{{ site.baseurl }}/assets/javascripts/openseadragon.min.js"></script>
   <script>
     (function(){
       let imgSources = [];
@@ -40,12 +40,12 @@
       for (i = imgSourcesMin; i < imgSourcesMax + 1; i++) {
         imgSources.push({
           type: 'image',
-          url:  `/assets/images/TJTST1_${('00' + i).slice(-3)}.png`
+          url:  `{{ site.baseurl }}/assets/images/TJTST1_${('00' + i).slice(-3)}.png`
         })
       }
       const viewer = OpenSeadragon({
         id: "viewer-block",
-        prefixUrl: "/assets/images/openseadragon/",
+        prefixUrl: "{{ site.baseurl }}/assets/images/openseadragon/",
         tileSources: imgSources,
         sequenceMode: true,
 
