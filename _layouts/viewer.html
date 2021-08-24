@@ -58,11 +58,10 @@
       document.getElementById('current-page').innerHTML = 1 + ' of ' + (imgSourcesMax - imgSourcesMin + 1);
       viewer.addHandler('page', function (data) {
         document.getElementById('current-page').innerHTML = ( data.page + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
-        let loadingImg = document.createElement('img');
-        loadingImg.src = '{{ site.baseurl }}/assets/images/icons/loading.svg';
+        let loadingImg = document.createElement('div');
         loadingImg.className = 'viewer__loading';
         loadingImg.id = 'loading-img';
-        document.getElementById('viewer-block').prepend(loadingImg);
+        document.getElementById('viewer-block').append(loadingImg);
         viewer.addOnceHandler('open', function() {
           document.getElementById('loading-img').remove();
         });
