@@ -29,6 +29,9 @@
         </li>
       </ul>
       <div id="current-page"></div>
+      <div class="viewer__goto-page">
+        Go to page: <input type="number" id="goto-page" />
+      </div>
     </footer>
   </body>
   <script src="{{ "/assets/javascripts/openseadragon.min.js" | relative_url }}"></script>
@@ -56,8 +59,9 @@
         previousButton: 'viewer-prev',
       });
       document.getElementById('current-page').innerHTML = 1 + ' of ' + (imgSourcesMax - imgSourcesMin + 1);
+      // flip pages
       viewer.addHandler('page', function (data) {
-        document.getElementById('current-page').innerHTML = ( data.page + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
+        document.getElementById('current-page').innerHTML = ( parseInt(data.page, 10) + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
         let loadingImg = document.createElement('div');
         loadingImg.className = 'viewer__loading';
         loadingImg.id = 'loading-img';
@@ -65,6 +69,16 @@
         viewer.addOnceHandler('open', function() {
           document.getElementById('loading-img').remove();
         });
+      });
+      // go to page
+      document.getElementById('goto-page').addEventListener('keyup', function(e){
+        if (!e) e = window.event;
+        var keyCode = e.code || e.key;
+        if (keyCode === 'Enter' || keyCode === 'NumpadEnter'){
+          viewer.goToPage(this.value - 1); 
+          this.value = '';
+          return false;
+        }
       });
     })();
   </script>

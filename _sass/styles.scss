@@ -84,4 +84,18 @@ body {
       height: 64px;
     }
   }
+  &__goto-page {
+    input[type=number] {
+      width: 50px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+  }
 }
+
