@@ -59,6 +59,10 @@
         previousButton: 'viewer-prev',
       });
 
+      let loadingImg = document.createElement('div');
+      loadingImg.className = 'viewer__loading';
+      loadingImg.id = 'loading-img';
+
       function replaceQueryParam(param, newval, search) {
         var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
         var query = search.replace(regex, "$1").replace(/&$/, '');
@@ -84,6 +88,7 @@
         document.getElementById('current-page').innerHTML = currentPage + " of " + (imgSourcesMax - imgSourcesMin + 1);
       }
       displayCurrentPage(imgSourcesMin);
+      document.getElementById('viewer-block').append(loadingImg);
 
       // get page from url
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -100,6 +105,9 @@
           modifyUrl(imgSourcesMin);
         }
       }
+      viewer.addOnceHandler('open', function() {
+        document.getElementById('loading-img').remove();
+      });
 
       // flip pages
       viewer.addHandler('page', function (data) {
@@ -107,9 +115,6 @@
         displayCurrentPage(pageNum);
         modifyUrl(pageNum);
 
-        let loadingImg = document.createElement('div');
-        loadingImg.className = 'viewer__loading';
-        loadingImg.id = 'loading-img';
         document.getElementById('viewer-block').append(loadingImg);
         viewer.addOnceHandler('open', function() {
           document.getElementById('loading-img').remove();
