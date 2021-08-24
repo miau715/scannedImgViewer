@@ -58,10 +58,55 @@
         nextButton:     'viewer-next',
         previousButton: 'viewer-prev',
       });
-      document.getElementById('current-page').innerHTML = 1 + ' of ' + (imgSourcesMax - imgSourcesMin + 1);
+
+      function replaceQueryParam(param, newval, search) {
+        var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
+        var query = search.replace(regex, "$1").replace(/&$/, '');
+
+        return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+      }
+
+      function pageValid(page) {
+        if (page < imgSourcesMin || page > imgSourcesMax) {
+          return false;
+        }
+        else {
+          return true;
+        }
+      }
+
+      function modifyUrl(page) {
+        const state = {'page': page};
+        window.history.pushState(state, '', replaceQueryParam('page', page, window.location.search));
+      }
+
+      function displayCurrentPage(currentPage){
+        document.getElementById('current-page').innerHTML = currentPage + " of " + (imgSourcesMax - imgSourcesMin + 1);
+      }
+      displayCurrentPage(imgSourcesMin);
+
+      // get page from url
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const params = Object.fromEntries(urlSearchParams.entries());
+      if (params.page) {
+        if (pageValid(params.page)) {
+          const pageIndex = parseInt(params.page, 10) - 1;
+          viewer.goToPage(pageIndex); 
+          displayCurrentPage(params.page);
+        }
+        else {
+          viewer.goToPage(imgSourcesMin - 1); 
+          displayCurrentPage(imgSourcesMin);
+          modifyUrl(imgSourcesMin);
+        }
+      }
+
       // flip pages
       viewer.addHandler('page', function (data) {
-        document.getElementById('current-page').innerHTML = ( parseInt(data.page, 10) + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
+        const pageNum = parseInt(data.page, 10) + 1;
+        displayCurrentPage(pageNum);
+        modifyUrl(pageNum);
+
         let loadingImg = document.createElement('div');
         loadingImg.className = 'viewer__loading';
         loadingImg.id = 'loading-img';
@@ -70,6 +115,12 @@
           document.getElementById('loading-img').remove();
         });
       });
+
+      // browser history
+      window.onpopstate = function(e){
+        // nice to have
+      };
+
       // go to page
       document.getElementById('goto-page').addEventListener('keyup', function(e){
         if (!e) e = window.event;
