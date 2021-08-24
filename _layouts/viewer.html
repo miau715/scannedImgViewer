@@ -44,20 +44,28 @@
         })
       }
       const viewer = OpenSeadragon({
-        id: "viewer-block",
-        prefixUrl: "{{ site.baseurl }}/assets/images/openseadragon/",
+        id: 'viewer-block',
+        prefixUrl: '{{ site.baseurl }}/assets/images/openseadragon/',
         tileSources: imgSources,
         sequenceMode: true,
 
-        zoomInButton:   "viewer-zoom-in",
-        zoomOutButton:  "viewer-zoom-out",
-        homeButton:     "viewer-home",
-        nextButton:     "viewer-next",
-        previousButton: "viewer-prev",
+        zoomInButton:   'viewer-zoom-in',
+        zoomOutButton:  'viewer-zoom-out',
+        homeButton:     'viewer-home',
+        nextButton:     'viewer-next',
+        previousButton: 'viewer-prev',
       });
-      document.getElementById("current-page").innerHTML = 1 + " of " + (imgSourcesMax - imgSourcesMin + 1);
-      viewer.addHandler("page", function (data) {
-        document.getElementById("current-page").innerHTML = ( data.page + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
+      document.getElementById('current-page').innerHTML = 1 + ' of ' + (imgSourcesMax - imgSourcesMin + 1);
+      viewer.addHandler('page', function (data) {
+        document.getElementById('current-page').innerHTML = ( data.page + 1 ) + " of " + (imgSourcesMax - imgSourcesMin + 1);
+        let loadingImg = document.createElement('img');
+        loadingImg.src = '{{ site.baseurl }}/assets/images/icons/loading.svg';
+        loadingImg.className = 'viewer__loading';
+        loadingImg.id = 'loading-img';
+        document.getElementById('viewer-block').prepend(loadingImg);
+        viewer.addOnceHandler('open', function() {
+          document.getElementById('loading-img').remove();
+        });
       });
     })();
   </script>

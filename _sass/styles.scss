@@ -55,6 +55,7 @@ body {
     }
   }
   &__content {
+    position: relative;
     flex-grow: 1;
     background-color: rgba(0,0,0,.2);
   }
@@ -65,5 +66,12 @@ body {
     > div {
       margin-left: 10px;
     }
+  }
+  &__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -32px;
+    margin-left: -32px;
   }
 }

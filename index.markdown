@@ -5,4 +5,4 @@
 layout: home
 ---
 
-[Viewer](/viewer/)
+[Viewer](viewer/)
