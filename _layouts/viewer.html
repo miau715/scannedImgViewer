@@ -5,6 +5,7 @@
 
   <body class="viewer">
     <header class="viewer__header">
+      <h1><a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
       <ul>
         <li>
           <button id="viewer-zoom-in">+</button>
@@ -31,6 +32,7 @@
       <div id="current-page"></div>
       <div class="viewer__goto-page">
         Go to page: <input type="number" id="goto-page" />
+        <button>Go</button>
       </div>
     </footer>
   </body>

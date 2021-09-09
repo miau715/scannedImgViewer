@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'TaigiFont';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../font/GenWanMinTW-M3.woff2") format('woff2');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'TaigiFont', tauhu-oo, PingFangTC-Regular, "Microsoft JhengHei", sans-serif;
+  line-height: 1.65;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: $color--dark-main;
+}
+
+*:focus {
+  outline-color: $color--fade-main;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+}

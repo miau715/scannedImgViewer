@@ -18,12 +18,18 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Scanned Image Viewer
+title: Kóng siáⁿ-mih sû-tián
 email: 
 description: >- # this means to ignore newlines until "baseurl:"
   Test
 baseurl: "/scannedImgViewer"
 url: "https://miau715.github.io"
+
+# navigation
+header_pages:
+        - intro.markdown
+        - info.markdown
+        - viewer.markdown
 
 # Server Config options
 livereload: true

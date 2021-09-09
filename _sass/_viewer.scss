@@ -1,0 +1,90 @@
+.viewer {
+  &__header, &__footer {
+    background: $color--fade-main;
+    padding: 5px 15px;
+    color: $color--light-main;
+    ul {
+      @extend %plain-list;
+      display: flex;
+      justify-content: center;
+    }
+    button {
+      margin: 0 5px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      justify-content: flex-end;
+      border-radius: 2px;
+      background-color: $color--light-gray;
+    }
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-size: 18px;
+      margin: 0 auto 0 0;
+    }
+    h1 a {
+      color: $color--fade-light-main;
+      text-decoration: none;
+    }
+  }
+  &__content {
+    position: relative;
+    flex-grow: 1;
+    background-color: $color--light-main;
+  }
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > div {
+      margin-left: 10px;
+    }
+  }
+  &__loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($color--light-main,.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+      content: "";
+      background: url('../images/icons/loading.svg');
+      width: 64px;
+      height: 64px;
+    }
+  }
+  &__goto-page {
+    display: flex;
+    align-items: center;
+    input[type=number] {
+      width: 50px;
+      border-radius: 2px;
+      border: 0;
+      height: 22px;
+      line-height: 22px;
+      padding: 0 5px;
+      color: $color--fade-dark-main;
+      margin-left: 5px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+    button {
+      width: auto;
+      padding: 2px 5px 0;
+
+    }
+  }
+}
