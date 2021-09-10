@@ -8,13 +8,19 @@
       <h1><a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
       <ul>
         <li>
-          <button id="viewer-zoom-in">+</button>
+          <button id="viewer-zoom-in">
+            <img src="{{ site.baseurl }}/assets/images/icons/plus.svg" alt="zoom in" />
+          </button>
         </li>
         <li>
-          <button id="viewer-zoom-out">-</button>
+          <button id="viewer-zoom-out">
+            <img src="{{ site.baseurl }}/assets/images/icons/minus.svg" alt="zoom out" />
+          </button>
         </li>
         <li>
-          <button id="viewer-home">0</button>
+          <button id="viewer-home">
+            <img src="{{ site.baseurl }}/assets/images/icons/fit.svg" alt="reset size" />
+          </button>
         </li>
       </ul>
     </header>
@@ -23,10 +29,14 @@
     <footer class="viewer__footer">
       <ul>
         <li>
-          <button id="viewer-prev">&lt;</button>
+          <button id="viewer-prev">
+            <img src="{{ site.baseurl }}/assets/images/icons/prev.svg" alt="prev page" />
+          </button>
         </li>
         <li>
-          <button id="viewer-next">&gt;</button>
+          <button id="viewer-next">
+            <img src="{{ site.baseurl }}/assets/images/icons/next.svg" alt="next page" />
+          </button>
         </li>
       </ul>
       <div id="current-page"></div>
