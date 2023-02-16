@@ -5,12 +5,12 @@
   for (i = imgSourcesMin; i < imgSourcesMax + 1; i++) {
     imgSources.push({
       type: 'image',
-      url:  `/scannedImgViewer/assets/images/TJTST1_${('00' + i).slice(-3)}.png`
+      url:  `../assets/images/TJTST1_${('00' + i).slice(-3)}.png`
     })
   }
   const viewer = OpenSeadragon({
     id: 'viewer-block',
-    prefixUrl: '/scannedImgViewer/assets/images/openseadragon/',
+    prefixUrl: '../assets/images/openseadragon/',
     tileSources: imgSources,
     sequenceMode: true,
 
